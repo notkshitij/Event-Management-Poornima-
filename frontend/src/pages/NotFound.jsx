@@ -18,8 +18,8 @@ export default function NotFound() {
     <div style={{
       margin: 0,
       padding: 0,
-      fontFamily: "'Work Sans', -apple-system, sans-serif",
-      width: '100vw',
+      fontFamily: "'Inter', -apple-system, sans-serif",
+      width: '100%',
       minHeight: '100vh',
       backgroundColor: '#f8f9ff',
       display: 'flex',
