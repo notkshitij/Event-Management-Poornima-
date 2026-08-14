@@ -22,13 +22,9 @@ export default function SplashScreen() {
       height: '100vh',
       overflow: 'hidden',
       position: 'relative',
-      fontFamily: "'Inter', -apple-system, sans-serif",
+      fontFamily: "'Work Sans', -apple-system, sans-serif",
+      backgroundColor: '#0f172a',
     }}>
-
-      {/* Google Font: Dancing Script for cursive text */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap');
-      `}</style>
 
       {/* Full-screen background image */}
       <div style={{
@@ -41,11 +37,11 @@ export default function SplashScreen() {
         zIndex: 0,
       }} />
 
-      {/* Dark blue gradient overlay — left side */}
+      {/* Primary Navy gradient overlay — left side */}
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: 'linear-gradient(to right, rgba(10, 25, 70, 0.92) 0%, rgba(10, 25, 70, 0.80) 35%, rgba(10, 25, 70, 0.30) 60%, rgba(10, 25, 70, 0.0) 100%)',
+        background: 'linear-gradient(to right, rgba(15, 23, 42, 0.96) 0%, rgba(15, 23, 42, 0.85) 35%, rgba(15, 23, 42, 0.35) 60%, rgba(15, 23, 42, 0.0) 100%)',
         zIndex: 1,
       }} />
 
@@ -55,14 +51,20 @@ export default function SplashScreen() {
         top: 0, left: 0, right: 0,
         display: 'flex',
         alignItems: 'center',
-        padding: '22px 40px',
+        padding: '24px 48px',
         zIndex: 5,
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <img src="/pu_logo.png" alt="Poornima University Logo" style={{ width: 44, height: 44, objectFit: 'contain' }} />
-          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.15 }}>
-            <span style={{ fontWeight: 800, fontSize: 15, color: '#fff', letterSpacing: '1px' }}>POORNIMA</span>
-            <span style={{ fontWeight: 400, fontSize: 11, color: '#cbd5e1', letterSpacing: '1.5px' }}>UNIVERSITY</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          {/* White SVG Logo for dark background */}
+          <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="45" stroke="#ffffff" strokeWidth="8" fill="none"/>
+            <path d="M40 30H55C63.2843 30 70 36.7157 70 45C70 53.2843 63.2843 60 55 60H40V30Z" fill="#ffffff"/>
+            <path d="M40 60V80" stroke="#ffffff" strokeWidth="8" strokeLinecap="round"/>
+            <circle cx="55" cy="45" r="8" fill="#0f172a"/>
+          </svg>
+          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
+            <span style={{ fontWeight: 800, fontSize: 16, color: '#ffffff', letterSpacing: '0.5px' }}>POORNIMA</span>
+            <span style={{ fontWeight: 600, fontSize: 12, color: '#cbd5e1' }}>UNIVERSITY</span>
           </div>
         </div>
       </div>
@@ -82,9 +84,9 @@ export default function SplashScreen() {
 
         {/* Tagline */}
         <div style={{
-          fontSize: '11px',
-          fontWeight: 500,
-          color: 'rgba(255,255,255,0.75)',
+          fontSize: '12px',
+          fontWeight: 600,
+          color: '#cbd5e1',
           letterSpacing: '1.5px',
           textTransform: 'uppercase',
           marginBottom: 10,
@@ -93,84 +95,80 @@ export default function SplashScreen() {
           ONE PLATFORM FOR<br />EVERY COLLEGE EVENT.
         </div>
 
-        {/* Gold divider line */}
+        {/* Light Gray divider line */}
         <div style={{
           width: 36,
           height: 2.5,
-          background: '#f59e0b',
+          background: '#e2e8f0',
           borderRadius: 2,
           marginBottom: 20,
         }} />
 
         {/* Main Heading */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 0, marginBottom: 32 }}>
-          {/* Line 1: Poornima University — bold white */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginBottom: 32 }}>
           <span style={{
             fontSize: 'clamp(28px, 3.2vw, 42px)',
-            fontWeight: 800,
+            fontWeight: 700,
             color: '#ffffff',
-            letterSpacing: '-0.3px',
+            letterSpacing: '-0.02em',
             lineHeight: 1.15,
           }}>
             Poornima University
           </span>
 
-          {/* Line 2: Event Management — gold cursive */}
           <span style={{
-            fontFamily: "'Dancing Script', cursive",
             fontSize: 'clamp(32px, 3.8vw, 52px)',
-            fontWeight: 700,
-            color: '#f59e0b',
-            lineHeight: 1.2,
-            letterSpacing: '0.5px',
+            fontWeight: 800,
+            color: '#e2e8f0',
+            lineHeight: 1.15,
+            letterSpacing: '-0.02em',
           }}>
             Event Management
           </span>
 
-          {/* Line 3: Portal — bold white */}
           <span style={{
             fontSize: 'clamp(28px, 3.2vw, 42px)',
-            fontWeight: 800,
+            fontWeight: 700,
             color: '#ffffff',
-            letterSpacing: '-0.3px',
+            letterSpacing: '-0.02em',
             lineHeight: 1.15,
           }}>
             Portal
           </span>
         </div>
 
-        {/* CTA Button */}
+        {/* CTA Button (High contrast, rectangular rounded corner) */}
         <Link to="/explore" style={{ textDecoration: 'none', width: 'fit-content' }} onClick={handleExplore}>
           <button
             style={{
-              background: '#0f2a6b',
-              color: '#fff',
-              border: '1.5px solid rgba(255,255,255,0.25)',
-              borderRadius: '50px',
-              padding: '13px 28px',
+              background: '#ffffff', // High contrast white background
+              color: '#0f172a', // Primary Navy text
+              border: 'none',
+              borderRadius: 4, // 0.25rem corner radius
+              padding: '14px 28px',
               fontSize: 15,
               fontWeight: 600,
               cursor: isLoading ? 'default' : 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: 12,
-              boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
-              transition: 'all 0.25s ease',
+              boxShadow: '0 4px 16px rgba(15, 23, 42, 0.15)',
+              transition: 'all 0.2s ease',
               letterSpacing: '0.2px',
               opacity: isLoading ? 0.8 : 1,
             }}
             onMouseEnter={(e) => {
               if (!isLoading) {
-                e.currentTarget.style.background = '#1e3a8a';
+                e.currentTarget.style.backgroundColor = '#f1f5f9';
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.4)';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(15, 23, 42, 0.25)';
               }
             }}
             onMouseLeave={(e) => {
               if (!isLoading) {
-                e.currentTarget.style.background = '#0f2a6b';
+                e.currentTarget.style.backgroundColor = '#ffffff';
                 e.currentTarget.style.transform = 'none';
-                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(15, 23, 42, 0.15)';
               }
             }}
           >
@@ -179,14 +177,14 @@ export default function SplashScreen() {
               width: 32,
               height: 32,
               borderRadius: '50%',
-              border: '1.5px solid rgba(255,255,255,0.4)',
+              border: '1.5px solid #0f172a',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               flexShrink: 0,
             }}>
               {isLoading ? (
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ animation: 'spin 1s linear infinite' }}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0f172a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ animation: 'spin 1s linear infinite' }}>
                   <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
                   <style>
                     {`
@@ -197,7 +195,7 @@ export default function SplashScreen() {
                   </style>
                 </svg>
               ) : (
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                   <line x1="16" y1="2" x2="16" y2="6"></line>
                   <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -226,7 +224,7 @@ export default function SplashScreen() {
             width: 4,
             height: 4,
             borderRadius: '50%',
-            background: 'rgba(255,255,255,0.25)',
+            background: 'rgba(226, 232, 240, 0.15)',
           }} />
         ))}
       </div>
