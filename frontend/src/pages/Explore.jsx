@@ -1,14 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import backgroundImage from '../assets/banner.png';
+import Lenis from 'lenis';
 
-// Smooth scroll with offset for sticky bars (marquee ~38px + navbar ~62px)
+let lenisInstance = null;
+
 const smoothScrollTo = (id) => {
   const el = document.getElementById(id);
   if (!el) return;
   const offset = 110;
-  const top = el.getBoundingClientRect().top + window.scrollY - offset;
-  window.scrollTo({ top, behavior: 'smooth' });
+  if (lenisInstance) {
+    lenisInstance.scrollTo(el, { offset: -offset, duration: 1.4, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+  } else {
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
 };
 
 const faqs = [
@@ -47,7 +53,29 @@ export default function Explore() {
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 80);
-    return () => clearTimeout(t);
+
+    // Init Lenis smooth scroll
+    const lenis = new Lenis({
+      duration: 1.6,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.8,
+    });
+    lenisInstance = lenis;
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    const rafId = requestAnimationFrame(raf);
+
+    return () => {
+      clearTimeout(t);
+      lenis.destroy();
+      lenisInstance = null;
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const filters = ['All', 'Hackathon', 'Cultural', 'Sports', 'Tech'];
@@ -69,7 +97,7 @@ export default function Explore() {
         @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
         ::-webkit-scrollbar { display: none; }
-        html, body { -ms-overflow-style: none; scrollbar-width: none; scroll-behavior: smooth; }
+        html, body { -ms-overflow-style: none; scrollbar-width: none; }
 
         .glass {
           background: rgba(10, 20, 60, 0.52);
